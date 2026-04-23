@@ -1,0 +1,287 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.08) 0 1px, transparent 1px),
+    radial-gradient(circle at 60% 70%, rgba(255,255,255,0.08) 0 1px, transparent 1px),
+    linear-gradient(to bottom, #08111f 0%, #0d1528 40%, #12111f 70%, #160d16 100%);
+  color: #2e241d;
+  position: relative;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 25% 70%, rgba(255,255,255,0.6) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 30%, rgba(255,255,255,0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 55% 15%, rgba(255,255,255,0.75) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.65) 0 1px, transparent 2px),
+    radial-gradient(circle at 85% 25%, rgba(255,255,255,0.8) 0 1px, transparent 2px),
+    radial-gradient(circle at 92% 75%, rgba(255,255,255,0.7) 0 1px, transparent 2px);
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.moon {
+  position: fixed;
+  top: 60px;
+  right: 70px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fffdf5 0%, #f6eed5 45%, #e8dcc0 100%);
+  box-shadow: 0 0 30px rgba(255, 245, 210, 0.45), 0 0 80px rgba(255, 245, 210, 0.18);
+  z-index: 0;
+  pointer-events: none;
+}
+
+#petals {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petal {
+  position: absolute;
+  top: -40px;
+  width: 18px;
+  height: 12px;
+  background: linear-gradient(135deg, #ffd0dc, #f6aabf);
+  border-radius: 60% 40% 60% 40%;
+  opacity: 0.75;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  box-shadow: 0 0 10px rgba(255, 183, 197, 0.15);
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.login-card {
+  width: min(92vw, 420px);
+  background: rgba(10, 10, 20, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  padding: 34px 28px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+  color: #f8eef5;
+}
+
+.login-card h1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.login-card p {
+  color: #e8d9e2;
+  margin-bottom: 18px;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+input::placeholder {
+  color: #d9c3cf;
+}
+
+button {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8b2f52, #5f1f37);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(91, 24, 50, 0.35);
+}
+
+button:hover {
+  opacity: 0.95;
+}
+
+.error {
+  min-height: 20px;
+  margin-top: 12px;
+  color: #ffbfd0;
+}
+
+.hidden {
+  display: none;
+}
+
+#diaryPage {
+  position: relative;
+  z-index: 2;
+  padding: 48px 16px 64px;
+}
+
+.notebook-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.notebook {
+  position: relative;
+  width: min(95vw, 980px);
+  padding-left: 44px;
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.35));
+}
+
+.paper {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(80, 130, 190, 0.12) 0px,
+      rgba(80, 130, 190, 0.12) 1px,
+      transparent 1px,
+      transparent 36px
+    ),
+    linear-gradient(to right, rgba(200, 75, 85, 0.24) 0 2px, transparent 2px),
+    linear-gradient(180deg, #fbf6ea 0%, #f7f0df 100%);
+  background-size: 100% 36px, 100% 100%, 100% 100%;
+  border-radius: 14px;
+  padding: 52px 42px 52px 56px;
+  border: 1px solid rgba(130, 105, 70, 0.18);
+  box-shadow:
+    inset 0 0 60px rgba(120, 90, 40, 0.06),
+    inset 0 0 8px rgba(80, 60, 30, 0.08);
+}
+
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(120, 90, 40, 0.03) 0 1px, transparent 1px),
+    radial-gradient(circle at 65% 70%, rgba(120, 90, 40, 0.03) 0 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, rgba(120, 90, 40, 0.025) 0 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  border-radius: 14px;
+}
+
+.page-hole {
+  position: absolute;
+  left: 10px;
+  width: 18px;
+  height: 18px;
+  background: #0f1420;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.55), 0 1px 2px rgba(255,255,255,0.08);
+  z-index: 3;
+}
+
+.hole-1 { top: 120px; }
+.hole-2 { top: 240px; }
+.hole-3 { top: 360px; }
+
+.paper-header h1 {
+  margin: 0 0 28px;
+  color: #3a241d;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+}
+
+.diary-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.08rem;
+  line-height: 2.25rem;
+  color: #3b2b20;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-40px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(50vh) translateX(20px) rotate(140deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(110vh) translateX(-20px) rotate(300deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .moon {
+    width: 70px;
+    height: 70px;
+    top: 30px;
+    right: 24px;
+  }
+
+  .notebook {
+    padding-left: 30px;
+  }
+
+  .paper {
+    padding: 34px 18px 34px 32px;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgba(80, 130, 190, 0.12) 0px,
+        rgba(80, 130, 190, 0.12) 1px,
+        transparent 1px,
+        transparent 32px
+      ),
+      linear-gradient(to right, rgba(200, 75, 85, 0.24) 0 2px, transparent 2px),
+      linear-gradient(180deg, #fbf6ea 0%, #f7f0df 100%);
+    background-size: 100% 32px, 100% 100%, 100% 100%;
+  }
+
+  .diary-text {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  .page-hole {
+    width: 14px;
+    height: 14px;
+    left: 6px;
+  }
+
+  .hole-1 { top: 92px; }
+  .hole-2 { top: 190px; }
+  .hole-3 { top: 288px; }
+}
